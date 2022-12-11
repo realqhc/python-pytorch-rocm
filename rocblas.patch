@@ -1,0 +1,25 @@
+From 53a4369a68bd4e6e73b4d1cd031dc39aec309ad3 Mon Sep 17 00:00:00 2001
+From: acxz <17132214+acxz@users.noreply.github.com>
+Date: Mon, 4 Jul 2022 17:34:57 -0400
+Subject: [PATCH] change rocblas.h -> rocblas/rocblas.h
+
+rocblas.h has been deprecated in favor of rocblas/rocblas.h
+---
+ torch/utils/hipify/cuda_to_hip_mappings.py | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/torch/utils/hipify/cuda_to_hip_mappings.py b/torch/utils/hipify/cuda_to_hip_mappings.py
+index 6f4c935047711..d03191b0c20b9 100644
+--- a/torch/utils/hipify/cuda_to_hip_mappings.py
++++ b/torch/utils/hipify/cuda_to_hip_mappings.py
+@@ -563,8 +563,8 @@
+             ("hip/hip_texture_types.h", CONV_INCLUDE, API_RUNTIME),
+         ),
+         ("vector_types.h", ("hip/hip_vector_types.h", CONV_INCLUDE, API_RUNTIME)),
+-        ("cublas.h", ("rocblas.h", CONV_INCLUDE_CUDA_MAIN_H, API_BLAS)),
+-        ("cublas_v2.h", ("rocblas.h", CONV_INCLUDE_CUDA_MAIN_H, API_BLAS)),
++        ("cublas.h", ("rocblas/rocblas.h", CONV_INCLUDE_CUDA_MAIN_H, API_BLAS)),
++        ("cublas_v2.h", ("rocblas/rocblas.h", CONV_INCLUDE_CUDA_MAIN_H, API_BLAS)),
+         ("curand.h", ("hiprand/hiprand.h", CONV_INCLUDE_CUDA_MAIN_H, API_RAND)),
+         ("curand_kernel.h", ("hiprand/hiprand_kernel.h", CONV_INCLUDE, API_RAND)),
+         ("curand_discrete.h", ("hiprand/hiprand_kernel.h", CONV_INCLUDE, API_RAND)),

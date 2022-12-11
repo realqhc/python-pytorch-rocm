@@ -6,9 +6,9 @@
 _pkgname="pytorch"
 pkgbase="python-${_pkgname}-rocm"
 pkgname=("${pkgbase}" "python-pytorch-opt-rocm")
-pkgver=1.12.1
-_pkgver=1.12.1
-pkgrel=4
+pkgver=1.13.0
+_pkgver=1.13.0
+pkgrel=1
 _pkgdesc="Tensors and Dynamic neural networks in Python with strong GPU acceleration"
 pkgdesc="${_pkgdesc}"
 arch=('x86_64')
@@ -18,52 +18,54 @@ depends=('google-glog' 'gflags' 'opencv' 'openmp' 'rccl' 'pybind11' 'python' 'py
          'python-numpy' 'protobuf' 'ffmpeg4.4' 'python-future' 'qt5-base' 'intel-oneapi-mkl'
          'python-typing_extensions')
 makedepends=('python' 'python-setuptools' 'python-yaml' 'python-numpy' 'cmake' 'rocm-hip-sdk' 'roctracer'
-             'miopen' 'git' 'hipmagma' 'ninja' 'pkgconfig' 'doxygen' 'gcc11')
+             'miopen' 'git' 'hipmagma' 'ninja' 'pkgconfig' 'doxygen' 'gcc11' 'onednn')
 source=("${_pkgname}-${pkgver}::git+https://github.com/pytorch/pytorch.git#tag=v$_pkgver"
         # generated using parse-submodules
-        "${pkgname}-cub::git+https://github.com/NVlabs/cub.git"
-        "${pkgname}-NNPACK::git+https://github.com/Maratyszcza/NNPACK.git"
-        "${pkgname}-ios-cmake::git+https://github.com/Yangqing/ios-cmake.git"
-        "${pkgname}-pthreadpool::git+https://github.com/Maratyszcza/pthreadpool.git"
+        "${pkgname}-ARM_NEON_2_x86_SSE::git+https://github.com/intel/ARM_NEON_2_x86_SSE.git"
+        "${pkgname}-FP16::git+https://github.com/Maratyszcza/FP16.git"
         "${pkgname}-FXdiv::git+https://github.com/Maratyszcza/FXdiv.git"
-        "${pkgname}-gloo::git+https://github.com/facebookincubator/gloo"
-        "${pkgname}-benchmark::git+https://github.com/google/benchmark.git"
-        "${pkgname}-pybind11::git+https://github.com/pybind/pybind11.git"
-        "${pkgname}-googletest::git+https://github.com/google/googletest.git"
-        "${pkgname}-enum34::git+https://github.com/PeachPy/enum34.git"
-        "${pkgname}-six::git+https://github.com/benjaminp/six.git"
-        "${pkgname}-cpuinfo::git+https://github.com/pytorch/cpuinfo.git"
-        "${pkgname}-protobuf::git+https://github.com/protocolbuffers/protobuf.git"
-        "${pkgname}-foxi::git+https://github.com/houseroad/foxi.git"
-        "${pkgname}-sleef::git+https://github.com/shibatch/sleef"
-        "${pkgname}-ideep::git+https://github.com/intel/ideep"
-        "${pkgname}-nccl::git+https://github.com/NVIDIA/nccl"
-        "${pkgname}-zstd::git+https://github.com/facebook/zstd.git"
-        "${pkgname}-gemmlowp::git+https://github.com/google/gemmlowp.git"
+        "${pkgname}-NNPACK::git+https://github.com/Maratyszcza/NNPACK.git"
+        "${pkgname}-PeachPy::git+https://github.com/malfet/PeachPy.git"
         "${pkgname}-QNNPACK::git+https://github.com/pytorch/QNNPACK"
+        "${pkgname}-VulkanMemoryAllocator::git+https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator.git"
+        "${pkgname}-XNNPACK::git+https://github.com/google/XNNPACK.git"
+        "${pkgname}-benchmark::git+https://github.com/google/benchmark.git"
+        "${pkgname}-cpuinfo::git+https://github.com/pytorch/cpuinfo.git"
+        "${pkgname}-cub::git+https://github.com/NVlabs/cub.git"
+        "${pkgname}-cudnn-frontend::git+https://github.com/NVIDIA/cudnn-frontend.git"
+        "${pkgname}-cutlass::git+https://github.com/NVIDIA/cutlass.git"
+        "${pkgname}-eigen::git+https://gitlab.com/libeigen/eigen.git"
+        "${pkgname}-enum34::git+https://github.com/PeachPy/enum34.git"
+        "${pkgname}-fbgemm::git+https://github.com/pytorch/fbgemm"
+        "${pkgname}-fbjni::git+https://github.com/facebookincubator/fbjni.git"
+        "${pkgname}-flatbuffers::git+https://github.com/google/flatbuffers.git"
+        "${pkgname}-fmt::git+https://github.com/fmtlib/fmt.git"
+        "${pkgname}-foxi::git+https://github.com/houseroad/foxi.git"
+        "${pkgname}-gemmlowp::git+https://github.com/google/gemmlowp.git"
+        "${pkgname}-gloo::git+https://github.com/facebookincubator/gloo"
+        "${pkgname}-googletest::git+https://github.com/google/googletest.git"
+        "${pkgname}-ideep::git+https://github.com/intel/ideep"
+        "${pkgname}-ios-cmake::git+https://github.com/Yangqing/ios-cmake.git"
+        "${pkgname}-ittapi::git+https://github.com/intel/ittapi.git"
+        "${pkgname}-json::git+https://github.com/nlohmann/json.git"
+        "${pkgname}-kineto::git+https://github.com/pytorch/kineto"
+        "${pkgname}-nccl::git+https://github.com/NVIDIA/nccl"
         "${pkgname}-onnx-tensorrt::git+https://github.com/onnx/onnx-tensorrt"
         "${pkgname}-onnx::git+https://github.com/onnx/onnx.git"
-        "${pkgname}-cudnn-frontend::git+https://github.com/NVIDIA/cudnn-frontend.git"
-        "${pkgname}-ARM_NEON_2_x86_SSE::git+https://github.com/intel/ARM_NEON_2_x86_SSE.git"
-        "${pkgname}-ittapi::git+https://github.com/intel/ittapi.git"
-        "${pkgname}-fbjni::git+https://github.com/facebookincubator/fbjni.git"
-        "${pkgname}-json::git+https://github.com/nlohmann/json.git"
-        "${pkgname}-fbgemm::git+https://github.com/pytorch/fbgemm"
-        "${pkgname}-fmt::git+https://github.com/fmtlib/fmt.git"
-        "${pkgname}-kineto::git+https://github.com/pytorch/kineto"
+        "${pkgname}-pocketfft::git+https://github.com/mreineck/pocketfft"
+        "${pkgname}-protobuf::git+https://github.com/protocolbuffers/protobuf.git"
+        "${pkgname}-psimd::git+https://github.com/Maratyszcza/psimd.git"
+        "${pkgname}-pthreadpool::git+https://github.com/Maratyszcza/pthreadpool.git"
+        "${pkgname}-pybind11::git+https://github.com/pybind/pybind11.git"
+        "${pkgname}-six::git+https://github.com/benjaminp/six.git"
+        "${pkgname}-sleef::git+https://github.com/shibatch/sleef"
         "${pkgname}-tbb::git+https://github.com/01org/tbb"
         "${pkgname}-tensorpipe::git+https://github.com/pytorch/tensorpipe.git"
-        "${pkgname}-psimd::git+https://github.com/Maratyszcza/psimd.git"
-        "${pkgname}-XNNPACK::git+https://github.com/google/XNNPACK.git"
-        "${pkgname}-FP16::git+https://github.com/Maratyszcza/FP16.git"
-        "${pkgname}-flatbuffers::git+https://github.com/google/flatbuffers.git"
-        "${pkgname}-eigen::git+https://gitlab.com/libeigen/eigen.git"
-        "${pkgname}-PeachPy::git+https://github.com/malfet/PeachPy.git"
-        "${pkgname}-pocketfft::git+https://github.com/mreineck/pocketfft"
+        "${pkgname}-zstd::git+https://github.com/facebook/zstd.git"
         fix_include_system.patch
         use-system-libuv.patch
         fix-building-for-torchvision.patch
-        https://patch-diff.githubusercontent.com/raw/pytorch/pytorch/pull/79360.patch
+        87773.patch
         ffmpeg4.4.patch
         "rocblas.patch::https://patch-diff.githubusercontent.com/raw/pytorch/pytorch/pull/80849.patch")
 sha256sums=('SKIP'
@@ -106,12 +108,14 @@ sha256sums=('SKIP'
             'SKIP'
             'SKIP'
             'SKIP'
+            'SKIP'
+            'SKIP'
             '557761502bbd994d9795bef46779e4b8c60ba0b45e7d60841f477d3b7f28a00a'
             'cd9ac4aaa9f946ac5eafc57cf66c5c16b3ea7ac8af32c2558fad0705411bb669'
             '600bd6a4bbcec9f99ab815d82cee1c2875530b2b75f4010da5ba72ce9bf31aff'
-            'SKIP'
+            '4bc94351219908725309b13f4e4d3d27e85757bd5fd56d07dfc9da07b0387cc9'
             '75001b59e76831b0c93a547f851cb980e00b0d8cc7b66fb507eaeac217dc6ff9'
-            'SKIP')
+            'ec55bb2ebc46aac803001e388045c9e9cb70c7545dd0874f1b93bde79406953a')
 options=('!lto')
 
 get_pyver () {
@@ -124,48 +128,49 @@ prepare() {
   # generated using parse-submodules
   git submodule init
 
-  git config submodule."third_party/pybind11".url "${srcdir}/${pkgname}"-pybind11
-  git config submodule."third_party/cub".url "${srcdir}/${pkgname}"-cub
-  git config submodule."third_party/eigen".url "${srcdir}/${pkgname}"-eigen
-  git config submodule."third_party/googletest".url "${srcdir}/${pkgname}"-googletest
-  #https://github.com/rocm-arch/python-pytorch-rocm/issues/49
-  #git config submodule."third_party/benchmark".url "${srcdir}/${pkgname}"-benchmark
-  git config submodule."third_party/protobuf".url "${srcdir}/${pkgname}"-protobuf
-  git config submodule."third_party/ios-cmake".url "${srcdir}/${pkgname}"-ios-cmake
+  git config submodule."android/libs/fbjni".url "${srcdir}/${pkgname}"-fbjni
   git config submodule."third_party/NNPACK".url "${srcdir}/${pkgname}"-NNPACK
-  git config submodule."third_party/gloo".url "${srcdir}/${pkgname}"-gloo
-  git config submodule."third_party/NNPACK_deps/pthreadpool".url "${srcdir}/${pkgname}"-pthreadpool
-  git config submodule."third_party/NNPACK_deps/FXdiv".url "${srcdir}/${pkgname}"-FXdiv
   git config submodule."third_party/NNPACK_deps/FP16".url "${srcdir}/${pkgname}"-FP16
+  git config submodule."third_party/NNPACK_deps/FXdiv".url "${srcdir}/${pkgname}"-FXdiv
   git config submodule."third_party/NNPACK_deps/psimd".url "${srcdir}/${pkgname}"-psimd
-  git config submodule."third_party/zstd".url "${srcdir}/${pkgname}"-zstd
+  git config submodule."third_party/NNPACK_deps/pthreadpool".url "${srcdir}/${pkgname}"-pthreadpool
+  git config submodule."third_party/QNNPACK".url "${srcdir}/${pkgname}"-QNNPACK
+  git config submodule."third_party/VulkanMemoryAllocator".url "${srcdir}/${pkgname}"-VulkanMemoryAllocator
+  git config submodule."third_party/XNNPACK".url "${srcdir}/${pkgname}"-XNNPACK
+  git config submodule."third_party/benchmark".url "${srcdir}/${pkgname}"-benchmark
   git config submodule."third_party/cpuinfo".url "${srcdir}/${pkgname}"-cpuinfo
+  git config submodule."third_party/cub".url "${srcdir}/${pkgname}"-cub
+  git config submodule."third_party/cudnn_frontend".url "${srcdir}/${pkgname}"-cudnn-frontend
+  git config submodule."third_party/cutlass".url "${srcdir}/${pkgname}"-cutlass
+  git config submodule."third_party/eigen".url "${srcdir}/${pkgname}"-eigen
+  git config submodule."third_party/fbgemm".url "${srcdir}/${pkgname}"-fbgemm
+  git config submodule."third_party/flatbuffers".url "${srcdir}/${pkgname}"-flatbuffers
+  git config submodule."third_party/fmt".url "${srcdir}/${pkgname}"-fmt
+  git config submodule."third_party/foxi".url "${srcdir}/${pkgname}"-foxi
+  git config submodule."third_party/gemmlowp/gemmlowp".url "${srcdir}/${pkgname}"-gemmlowp
+  git config submodule."third_party/gloo".url "${srcdir}/${pkgname}"-gloo
+  git config submodule."third_party/googletest".url "${srcdir}/${pkgname}"-googletest
+  git config submodule."third_party/ideep".url "${srcdir}/${pkgname}"-ideep
+  git config submodule."third_party/ios-cmake".url "${srcdir}/${pkgname}"-ios-cmake
+  git config submodule."third_party/ittapi".url "${srcdir}/${pkgname}"-ittapi
+  git config submodule."third_party/kineto".url "${srcdir}/${pkgname}"-kineto
+  git config submodule."third_party/nccl/nccl".url "${srcdir}/${pkgname}"-nccl
+  git config submodule."third_party/neon2sse".url "${srcdir}/${pkgname}"-ARM_NEON_2_x86_SSE
+  git config submodule."third_party/nlohmann".url "${srcdir}/${pkgname}"-json
+  git config submodule."third_party/onnx".url "${srcdir}/${pkgname}"-onnx
+  git config submodule."third_party/onnx-tensorrt".url "${srcdir}/${pkgname}"-onnx-tensorrt
+  git config submodule."third_party/pocketfft".url "${srcdir}/${pkgname}"-pocketfft
+  git config submodule."third_party/protobuf".url "${srcdir}/${pkgname}"-protobuf
+  git config submodule."third_party/pybind11".url "${srcdir}/${pkgname}"-pybind11
   git config submodule."third_party/python-enum".url "${srcdir}/${pkgname}"-enum34
   git config submodule."third_party/python-peachpy".url "${srcdir}/${pkgname}"-PeachPy
   git config submodule."third_party/python-six".url "${srcdir}/${pkgname}"-six
-  git config submodule."third_party/onnx".url "${srcdir}/${pkgname}"-onnx
-  git config submodule."third_party/onnx-tensorrt".url "${srcdir}/${pkgname}"-onnx-tensorrt
   git config submodule."third_party/sleef".url "${srcdir}/${pkgname}"-sleef
-  git config submodule."third_party/ideep".url "${srcdir}/${pkgname}"-ideep
-  git config submodule."third_party/nccl/nccl".url "${srcdir}/${pkgname}"-nccl
-  git config submodule."third_party/gemmlowp/gemmlowp".url "${srcdir}/${pkgname}"-gemmlowp
-  git config submodule."third_party/QNNPACK".url "${srcdir}/${pkgname}"-QNNPACK
-  git config submodule."third_party/neon2sse".url "${srcdir}/${pkgname}"-ARM_NEON_2_x86_SSE
-  git config submodule."third_party/fbgemm".url "${srcdir}/${pkgname}"-fbgemm
-  git config submodule."third_party/foxi".url "${srcdir}/${pkgname}"-foxi
   git config submodule."third_party/tbb".url "${srcdir}/${pkgname}"-tbb
-  git config submodule."android/libs/fbjni".url "${srcdir}/${pkgname}"-fbjni
-  git config submodule."third_party/XNNPACK".url "${srcdir}/${pkgname}"-XNNPACK
-  git config submodule."third_party/fmt".url "${srcdir}/${pkgname}"-fmt
   git config submodule."third_party/tensorpipe".url "${srcdir}/${pkgname}"-tensorpipe
-  git config submodule."third_party/cudnn_frontend".url "${srcdir}/${pkgname}"-cudnn-frontend
-  git config submodule."third_party/kineto".url "${srcdir}/${pkgname}"-kineto
-  git config submodule."third_party/pocketfft".url "${srcdir}/${pkgname}"-pocketfft
-  git config submodule."third_party/ittapi".url "${srcdir}/${pkgname}"-ittapi
-  git config submodule."third_party/flatbuffers".url "${srcdir}/${pkgname}"-flatbuffers
-  git config submodule."third_party/nlohmann".url "${srcdir}/${pkgname}"-json
+  git config submodule."third_party/zstd".url "${srcdir}/${pkgname}"-zstd
 
-  git submodule update --init --recursive
+  git -c protocol.file.allow=always submodule update --init --recursive
 
   # https://bugs.archlinux.org/task/64981
   patch -N torch/utils/cpp_extension.py "${srcdir}"/fix_include_system.patch
@@ -177,13 +182,13 @@ prepare() {
   patch -Np1 -i "${srcdir}/fix-building-for-torchvision.patch"
 
   # Fix building against glog 0.6
-  patch -Np1 -i "${srcdir}/79360.patch"
+  patch -Np1 -i "${srcdir}/87773.patch"
 
   # build against ffmpeg4.4
   patch -Np1 -i "${srcdir}/ffmpeg4.4.patch"
 
   # fix https://github.com/pytorch/pytorch/issues/80848
-  patch -Np1 -i "${srcdir}/rocblas.patch"
+  # patch -Np1 -i "${srcdir}/rocblas.patch"
 
   cd "${srcdir}"
 
@@ -230,13 +235,13 @@ prepare() {
 
 build() {
   # PYTORCH_ROCM_ARCH is an env var used to populate the PYTORCH_ROCM_ARCH export
-  # PYTORCH_ROCM_ARCH="gfx908"
+  PYTORCH_ROCM_ARCH="gfx1030"
   # NOTE: It's your responbility to validate the value of $PYTORCH_ROCM_ARCH.
   # If unsure, don't set it and several architectures will be built.
   if [[ -n "$PYTORCH_ROCM_ARCH" ]]; then
     export PYTORCH_ROCM_ARCH="$PYTORCH_ROCM_ARCH"
   else
-    export PYTORCH_ROCM_ARCH="gfx803;gfx900;gfx906;gfx908"
+    export PYTORCH_ROCM_ARCH="gfx900;gfx906;gfx908;gfx90a;gfx1030"
   fi
 
   echo "Building with rocm and without non-x86-64 optimizations"
@@ -283,8 +288,9 @@ _package() {
   #mv "${pkgdir}/${pytorchpath}/share/cmake" "${pkgdir}/usr/lib/cmake"
 
   # put C++ API in correct place
-  #mv "${pkgdir}/${pytorchpath}/include" "${pkgdir}/usr/include"
-  #mv "${pkgdir}/${pytorchpath}/lib"/*.so* "${pkgdir}/usr/lib/"
+  find "${pkgdir}/${pytorchpath}"/lib/ -type f,l \( -iname '*.so' -or -iname '*.so*' \) -print0 | while read -rd $'\0' _lib; do
+    mv "${_lib}" "${pkgdir}"/usr/lib/
+  done
 
   # clean up duplicates
   # TODO: move towards direct shared library dependecy of:
@@ -293,15 +299,15 @@ _package() {
   rm -rf "${pkgdir}/usr/include/pybind11"
 
   # python module is hardcoded to look there at runtime
-  #ln -s /usr/include "${pkgdir}/${pytorchpath}/include"
-  #find "${pkgdir}"/usr/lib -type f -name "*.so*" -print0 | while read -rd $'\0' _lib; do
-  #  ln -s ${_lib#"$pkgdir"} "${pkgdir}/${pytorchpath}/lib/"
-  #done
+  ln -s /usr/include "${pkgdir}/${pytorchpath}/include"
+  find "${pkgdir}"/usr/lib -maxdepth 1 -type f,l \( -iname '*.so' -or -iname '*.so*' \) -print0 | while read -rd $'\0' _lib; do
+    ln -s ${_lib#"$pkgdir"} "${pkgdir}/${pytorchpath}/lib/"
+  done
 }
 
 package_python-pytorch-rocm() {
   pkgdesc="${_pkgdesc} (with ROCM)"
-  depends+=(rocm-hip-sdk roctracer miopen hipmagma)
+  depends+=(rocm-hip-sdk roctracer miopen hipmagma onednn)
   conflicts=(python-pytorch)
   provides=(python-pytorch)
 
@@ -311,7 +317,7 @@ package_python-pytorch-rocm() {
 
 package_python-pytorch-opt-rocm() {
   pkgdesc="${_pkgdesc} (with ROCM and AVX2 CPU optimizations)"
-  depends+=(rocm-hip-sdk roctracer miopen hipmagma)
+  depends+=(rocm-hip-sdk roctracer miopen hipmagma onednn)
   conflicts=(python-pytorch)
   provides=(python-pytorch python-pytorch-rocm)
 
